@@ -1,8 +1,9 @@
-//
-// Created by Артем Акулов on 21.09.2025.
-//
-
 #ifndef PARSER_H
 #define PARSER_H
+
+#include "list.h"
+#include "token.h"
+
+list* parse(list* tokens);
 
 #endif //PARSER_H

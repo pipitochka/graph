@@ -1,8 +1,9 @@
-//
-// Created by Артем Акулов on 21.09.2025.
-//
-
 #ifndef EVAL_H
 #define EVAL_H
+
+#include "token.h"
+#include "list.h"
+
+double calculate_value(list *tokens, double x);
 
 #endif //EVAL_H
