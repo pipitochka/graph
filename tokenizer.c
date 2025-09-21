@@ -30,9 +30,21 @@ void skip_spaces(const char* input, int* index) {
   }
 }
 
-enum tokenizer_state {variable, function, scope_open, scope_close, identifier, operator};
+enum tokenizer_state {number, function, scope_open, scope_close, identifier, operator};
 
-token* get_number_token(const char* input, int* index, enum tokenizer_state* state);
+token* get_number_token(const char* input, int* index, enum tokenizer_state* state){
+  int i = *index;
+  int is_used_del = 0;
+  while (1) {
+    if (is_digit(input[i])) {
+      i++;
+    } else if (input[i] == '.' && is_used_del == 0) {
+      is_used_del = 1;
+      i++;
+    }
+  }
+  *state = number;
+}
 
 token* get_variable_token(const char* input, int* index, enum tokenizer_state* state);
 
@@ -55,11 +67,11 @@ list* tokenize(const char* input){
       token = get_number_token(input, &i, &state);
     } else if (is_alpha(input[i]) && (state == operator || state == function || state == scope_open)){
       token = get_variable_token(input, &i, &state);
-    } else if (is_operator(input[i]) && (state == scope_open || state == scope_close || state == variable || state == identifier)){
+    } else if (is_operator(input[i]) && (state == scope_open || state == scope_close || state == number || state == identifier)){
       token = get_operator_token(input, &i, &state);
     } else if (is_scope_open(input[i]) && (state == operator)){
       token = get_scope_token(input, &i, &state);
-    } else if (is_scope_close(input[i]) && (state == variable || state == identifier)){
+    } else if (is_scope_close(input[i]) && (state == number || state == identifier)){
       token = get_scope_token(input, &i, &state);
     }
     if (token != NULL){
