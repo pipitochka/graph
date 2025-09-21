@@ -59,11 +59,28 @@ list* tokenize(const char* input){
       token = get_operator_token(input, &i, &state);
     } else if (is_scope_open(input[i]) && (state == operator)){
       token = get_scope_token(input, &i, &state);
-    } else if (is_scope_close(input[i]) && (state == variable || state == identifier)){}
+    } else if (is_scope_close(input[i]) && (state == variable || state == identifier)){
+      token = get_scope_token(input, &i, &state);
+    }
     if (token != NULL){
       push_back(tokens, token);
     } else {
       flag = 0;
     }
+  }
+}
+
+void print_tokens(const list* tokens) {
+  if (tokens == NULL || tokens->head == NULL) {
+    printf("No tokens");
+    return;
+  }
+       
+  node* current = tokens->head;
+  
+  while (current != NULL) {
+    printf("%s\n", 
+           current->token->lexeme);
+    current = current->next;
   }
 }

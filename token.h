@@ -18,4 +18,6 @@ token* init_token(TokenType type, char* lexeme);
 
 void free_token(token* token);
 
+void print_tokens(const list* tokens);
+
 #endif //TOKEN_H

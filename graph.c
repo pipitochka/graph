@@ -15,11 +15,11 @@ int main() {
     printf("n/a");
     return 0;
   }
-  
-  struct list* parsed_list = parse(list);
-  free_list(list);
-  
-  render(parsed_list);
-  
-  free_list_with_tokens(parsed_list);
+//  
+//  struct list* parsed_list = parse(list);
+//  free_list(list);
+//  
+//  render(parsed_list);
+//  
+//  free_list_with_tokens(parsed_list);
 }
