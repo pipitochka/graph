@@ -14,8 +14,8 @@ typedef struct token {
   char* lexeme;
 } token;
 
-token* initToken(TokenType type, char* lexeme);
+token* init_token(TokenType type, char* lexeme);
 
-void freeToken(token* token);
+void free_token(token* token);
 
 #endif //TOKEN_H

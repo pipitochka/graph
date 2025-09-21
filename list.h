@@ -14,8 +14,12 @@ typedef struct list {
 
 list* init_list();
 
-void push_back(list* l, token* tok);
+node* init_node(token* token);
+
+int push_back(list* l, token* tok);
 
 void free_list(list* l);
+
+void free_list_with_tokens(list* l);
 
 #endif //LIST_H
